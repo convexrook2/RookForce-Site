@@ -1,5 +1,24 @@
 import { createStoredZip } from './profiles-zip.mjs';
 
+// Supplied profile-name presentation only; this does not identify a live car.
+const profileManufacturers = ['ADESS', 'Alpine', 'Aston Martin', 'BMW', 'Cadillac', 'Chevrolet',
+  'Duqueine', 'Ferrari', 'Ford', 'Genesis', 'Ginetta', 'Glickenhaus', 'Isotta Fraschini',
+  'Lamborghini', 'Lexus', 'Ligier', 'McLaren', 'Mercedes-AMG', 'ORECA', 'Peugeot', 'Porsche', 'Toyota', 'Vanwall'];
+const profileClassColours = { Hypercar: 'Hypercar', 'Hypercar (LMH/LMDh)': 'Hypercar',
+  GT3: 'LMGT3', LMGT3: 'LMGT3', LMP2: 'LMP2', 'LMP2+': 'LMP2', LMP3: 'LMP3', GTE: 'GTE' };
+function profileNameTone(profile) {
+  if (profile.game !== 'Le Mans Ultimate') return null;
+  if (profile.kind === 'Class preset') {
+    const value = profileClassColours[profile.category];
+    return value ? { key: 'classColour', value } : null;
+  }
+  if (profile.kind === 'Car preset') {
+    const value = profileManufacturers.find(name => profile.displayName.startsWith(`${name} `));
+    return value ? { key: 'manufacturer', value } : null;
+  }
+  return null;
+}
+
 const list = document.querySelector('#profile-list');
 const search = document.querySelector('#profile-search');
 const game = document.querySelector('#profile-game');
@@ -10,9 +29,16 @@ const selectShown = document.querySelector('#select-shown');
 const clear = document.querySelector('#clear-selection');
 const download = document.querySelector('#download-selected');
 const downloadStatus = document.querySelector('#download-status');
+const previous = document.querySelector('#profiles-previous');
+const next = document.querySelector('#profiles-next');
+const pager = document.querySelector('#profiles-pager');
+const pageCount = document.querySelector('#profiles-page-count');
 const selected = new Set();
+const pageSize = 9;
 let profiles = [];
+let matches = [];
 let visible = [];
+let pageIndex = 0;
 let busy = false;
 const node = (tag, text, className) => {
   const item = document.createElement(tag);
@@ -27,22 +53,30 @@ function updateSelection() {
   download.disabled = busy || selected.size === 0;
   selectShown.disabled = busy || visible.length === 0;
   search.disabled = game.disabled = busy;
+  previous.disabled = busy || pageIndex === 0;
+  next.disabled = busy || (pageIndex + 1) * pageSize >= matches.length;
+  pageCount.textContent = `Page ${pageIndex + 1} of ${Math.max(1, Math.ceil(matches.length / pageSize))}`;
+  pager.hidden = matches.length === 0;
   list.querySelectorAll('input').forEach(input => {
     input.checked = selected.has(input.value);
     input.disabled = busy;
-    input.closest('.profile-card').classList.toggle('is-selected', input.checked);
+    input.closest('.profile-row').classList.toggle('is-selected', input.checked);
   });
-  status.textContent = `${visible.length} of ${profiles.length} profiles shown · ${selected.size} selected.`;
+  const range = matches.length ? `${pageIndex * pageSize + 1}–${pageIndex * pageSize + visible.length} of ${matches.length} profiles` : '0 profiles';
+  status.textContent = `${range}${matches.length !== profiles.length ? ` · ${profiles.length} total` : ''} · ${selected.size} selected.`;
 }
 
 function render() {
   const query = search.value.trim().toLocaleLowerCase();
-  visible = profiles.filter(profile => (!game.value || profile.game === game.value)
+  matches = profiles.filter(profile => (!game.value || profile.game === game.value)
     && (!query || `${profile.displayName} ${profile.game} ${profile.category} ${profile.kind} ${profile.deviceClass} ${profile.file}`.toLocaleLowerCase().includes(query)));
+  pageIndex = Math.min(pageIndex, Math.max(0, Math.ceil(matches.length / pageSize) - 1));
+  visible = matches.slice(pageIndex * pageSize, (pageIndex + 1) * pageSize);
   list.replaceChildren();
   for (const profile of visible) {
-    const card = node('article', null, 'profile-card');
+    const card = node('li', null, 'profile-row');
     card.dataset.game = profile.game;
+    const identity = node('div', null, 'profile-identity');
     const label = node('label');
     const input = node('input');
     input.type = 'checkbox'; input.value = profile.file;
@@ -52,16 +86,16 @@ function render() {
       updateSelection();
     });
     const copy = node('span', null, 'profile-copy');
-    copy.append(node('span', profile.game === 'Class presets' ? 'Other class presets' : profile.game, 'profile-game'));
     const title = node('span', profile.displayName, 'profile-title');
+    const tone = profileNameTone(profile);
+    if (tone) title.dataset[tone.key] = tone.value;
     title.setAttribute('role', 'heading'); title.setAttribute('aria-level', '3');
     copy.append(title);
+    copy.append(node('span', profile.game, 'profile-game'));
     copy.append(node('span', `${profile.kind}${profile.category !== profile.kind && profile.category !== profile.displayName ? ` · ${profile.category}` : ''}`, 'profile-context'));
     copy.append(node('span', `${profile.deviceManufacturer} ${profile.deviceClass}`, 'profile-device'));
-    label.append(input, copy); card.append(label);
-    if (profile.note) card.append(node('p', profile.note, 'profile-note'));
-    const details = node('details'); details.append(node('summary', 'Original file'));
-    details.append(node('p', profile.file)); card.append(details);
+    label.append(input, copy); identity.append(label); card.append(identity);
+    if (profile.note) copy.append(node('span', profile.note, 'profile-note'));
     const footer = node('div', null, 'profile-download');
     const link = node('a', 'Download XML'); link.href = profile.url; link.download = profile.file;
     link.setAttribute('aria-label', `Download ${profile.displayName} XML`);
@@ -73,8 +107,15 @@ function render() {
   updateSelection();
 }
 
-search.addEventListener('input', render);
-game.addEventListener('change', render);
+search.addEventListener('input', () => { pageIndex = 0; render(); });
+game.addEventListener('change', () => { pageIndex = 0; render(); });
+function changePage(delta, control) {
+  if (busy || control.disabled) return;
+  pageIndex += delta; render();
+  if (control.disabled) (delta > 0 ? previous : next).focus();
+}
+previous.addEventListener('click', () => changePage(-1, previous));
+next.addEventListener('click', () => changePage(1, next));
 selectShown.addEventListener('click', () => { visible.forEach(profile => selected.add(profile.file)); updateSelection(); });
 clear.addEventListener('click', () => { selected.clear(); updateSelection(); downloadStatus.textContent = 'Selection cleared.'; });
 

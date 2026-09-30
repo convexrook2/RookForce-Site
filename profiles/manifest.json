@@ -1,7 +1,7 @@
 {
   "snapshot": "2026-09-30",
   "count": 59,
-  "groupBasis": "Game labels follow supplied names; car/class display labels use retained catalog context. Device labels describe XML metadata, not compatibility proof.",
+  "groupBasis": "Game labels follow supplied names and owner-confirmed LMU class presets; car/class display labels use retained catalog context. Device labels describe XML metadata, not compatibility proof.",
   "allArchive": "profiles/RookForce-Wheelbase-Profiles.zip",
   "profiles": [
     {
@@ -134,12 +134,12 @@
       "firmwareVersion": "1.21.233",
       "id": "profile-48",
       "url": "profiles/xml/Wheelbase%20Preset%20-%20GT3.xml",
-      "game": "Class presets",
+      "game": "Le Mans Ultimate",
       "displayName": "GT3",
       "category": "GT3",
       "kind": "Class preset",
-      "note": "Game unspecified in this file.",
-      "labelSource": "Supplied XML name; no game inferred"
+      "note": "",
+      "labelSource": "Supplied XML name; owner-confirmed Le Mans Ultimate class preset"
     },
     {
       "file": "Wheelbase Preset - GTE.xml",
@@ -152,12 +152,12 @@
       "firmwareVersion": "1.21.233",
       "id": "profile-49",
       "url": "profiles/xml/Wheelbase%20Preset%20-%20GTE.xml",
-      "game": "Class presets",
+      "game": "Le Mans Ultimate",
       "displayName": "GTE",
       "category": "GTE",
       "kind": "Class preset",
-      "note": "Game unspecified in this file.",
-      "labelSource": "Supplied XML name; no game inferred"
+      "note": "",
+      "labelSource": "Supplied XML name; owner-confirmed Le Mans Ultimate class preset"
     },
     {
       "file": "Wheelbase Preset - Hypercar.xml",
@@ -170,12 +170,12 @@
       "firmwareVersion": "1.21.233",
       "id": "profile-50",
       "url": "profiles/xml/Wheelbase%20Preset%20-%20Hypercar.xml",
-      "game": "Class presets",
+      "game": "Le Mans Ultimate",
       "displayName": "Hypercar",
       "category": "Hypercar",
       "kind": "Class preset",
-      "note": "Game unspecified in this file.",
-      "labelSource": "Supplied XML name; no game inferred"
+      "note": "",
+      "labelSource": "Supplied XML name; owner-confirmed Le Mans Ultimate class preset"
     },
     {
       "file": "Wheelbase Preset - LMGT3.xml",
@@ -188,12 +188,12 @@
       "firmwareVersion": "1.21.233",
       "id": "profile-52",
       "url": "profiles/xml/Wheelbase%20Preset%20-%20LMGT3.xml",
-      "game": "Class presets",
+      "game": "Le Mans Ultimate",
       "displayName": "LMGT3",
       "category": "LMGT3",
       "kind": "Class preset",
-      "note": "Game unspecified in this file.",
-      "labelSource": "Supplied XML name; no game inferred"
+      "note": "",
+      "labelSource": "Supplied XML name; owner-confirmed Le Mans Ultimate class preset"
     },
     {
       "file": "Wheelbase Preset - LMP2.xml",
@@ -206,12 +206,12 @@
       "firmwareVersion": "1.21.233",
       "id": "profile-54",
       "url": "profiles/xml/Wheelbase%20Preset%20-%20LMP2.xml",
-      "game": "Class presets",
+      "game": "Le Mans Ultimate",
       "displayName": "LMP2",
       "category": "LMP2",
       "kind": "Class preset",
-      "note": "Game unspecified in this file.",
-      "labelSource": "Supplied XML name; no game inferred"
+      "note": "",
+      "labelSource": "Supplied XML name; owner-confirmed Le Mans Ultimate class preset"
     },
     {
       "file": "Wheelbase Preset - LMP2+.xml",
@@ -224,12 +224,12 @@
       "firmwareVersion": "1.21.233",
       "id": "profile-53",
       "url": "profiles/xml/Wheelbase%20Preset%20-%20LMP2%2B.xml",
-      "game": "Class presets",
+      "game": "Le Mans Ultimate",
       "displayName": "LMP2+",
       "category": "LMP2+",
       "kind": "Class preset",
-      "note": "Game unspecified in this file.",
-      "labelSource": "Supplied XML name; no game inferred"
+      "note": "",
+      "labelSource": "Supplied XML name; owner-confirmed Le Mans Ultimate class preset"
     },
     {
       "file": "Wheelbase Preset - LMP3.xml",
@@ -242,12 +242,12 @@
       "firmwareVersion": "1.21.233",
       "id": "profile-55",
       "url": "profiles/xml/Wheelbase%20Preset%20-%20LMP3.xml",
-      "game": "Class presets",
+      "game": "Le Mans Ultimate",
       "displayName": "LMP3",
       "category": "LMP3",
       "kind": "Class preset",
-      "note": "Game unspecified in this file.",
-      "labelSource": "Supplied XML name; no game inferred"
+      "note": "",
+      "labelSource": "Supplied XML name; owner-confirmed Le Mans Ultimate class preset"
     },
     {
       "file": "Wheelbase Preset - Forte_LMU_ADESS_AD25.xml",
