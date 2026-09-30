@@ -1,0 +1,53 @@
+.profiles-page{min-width:0}
+.profiles-page .site-header{position:relative;border-top:3px solid #ee313b;border-bottom:1px solid var(--line);background:#071016}
+.profiles-main{padding-bottom:58px}
+.profiles-intro{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(260px,.65fr);gap:55px;align-items:center;padding:53px 0 42px}
+.profiles-intro h1{margin:19px 0 22px;font-size:clamp(4.4rem,6.8vw,7.8rem);letter-spacing:-.03em;line-height:.86}
+.profiles-intro>div>p{color:var(--secondary);font-size:1rem;margin-bottom:0}
+.profiles-all{padding:26px;background:linear-gradient(130deg,#173544,#0b1c27);border:1px solid #44616f;border-top:3px solid var(--signal)}
+.profiles-all>strong{display:block;font-family:'Barlow Condensed',sans-serif;font-size:4.2rem;line-height:1;margin:16px 0 22px}
+.profiles-all>strong>span{display:block;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:400;color:var(--secondary);margin-top:7px}
+.profiles-all .button-primary{width:100%}
+.profiles-all p{font-size:.72rem;color:var(--secondary);margin:13px 0 0}
+.profiles-library{border-top:1px solid var(--line);padding-top:30px}
+.profiles-heading{display:flex;gap:26px;align-items:end;justify-content:space-between;margin-bottom:25px}
+.profiles-heading h2{font-size:clamp(2.8rem,4vw,4.3rem);margin:0}
+.profiles-heading p{font-size:.75rem;color:var(--muted);margin:0;line-height:1.6}
+.profiles-filters{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,.4fr);gap:18px}
+.profiles-filters label{display:grid;gap:7px;font-size:.75rem;color:var(--secondary);font-weight:700}
+.profiles-filters input,.profiles-filters select{width:100%;min-width:0;min-height:46px;padding:11px 13px;background:#0e1c25;color:var(--text);border:1px solid #46616f;font:inherit;font-size:.86rem;border-radius:0}
+.profiles-list-tools{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:16px 0}
+.profiles-list-tools p{margin:0;font-size:.76rem;color:var(--secondary)}
+.profiles-list-tools button,.profile-selection button:not(.button-primary){border:0;border-bottom:1px solid #6b929f;padding:5px 0;background:transparent;color:var(--signal);font-size:.76rem;font-weight:700;cursor:pointer}
+.profiles-page button:disabled{opacity:.45;cursor:default}
+.profile-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-height:720px;overflow:auto;scrollbar-color:var(--signal) #152b36;padding:4px 6px 4px 4px;align-content:start}
+.profile-card{display:flex;flex-direction:column;position:relative;padding:19px 20px 16px;border:1px solid #345260;background:linear-gradient(140deg,#102330,#0c1922);border-top:2px solid #62e6f4;min-width:0}
+.profile-card[data-game="AC Evo"]{border-top-color:#bda6ed}
+.profile-card[data-game="Class presets"]{border-top-color:#9caeb7}
+.profile-card.is-selected{border-color:var(--signal);background:linear-gradient(140deg,#183b48,#0c202b)}
+.profile-card>label{display:flex;gap:13px;align-items:start;cursor:pointer}
+.profile-card input{flex:none;width:20px;height:20px;margin:3px 0 0;accent-color:var(--signal);cursor:pointer}
+.profile-card .profile-copy{display:block;min-width:0}
+.profile-title{display:block;font-family:'Barlow Condensed','Arial Narrow',Impact,sans-serif;text-transform:uppercase;font-weight:700;font-size:1.65rem;line-height:1.08;letter-spacing:.005em;margin:9px 0 10px;overflow-wrap:anywhere}
+.profile-game{font-size:.65rem;font-weight:700;color:var(--signal);letter-spacing:.05em}
+.profile-card[data-game="AC Evo"] .profile-game{color:#d4c1fc}
+.profile-card[data-game="Class presets"] .profile-game{color:#b7c6cf}
+.profile-context{font-size:.7rem;color:var(--secondary);display:block;line-height:1.55}
+.profile-device{font-size:.68rem;color:var(--muted);display:block;margin-top:4px}
+.profile-note{font-size:.7rem;line-height:1.5;color:#f0d4ab;margin:14px 0 0}
+.profile-card details{margin:12px 0 3px;font-size:.66rem;color:var(--muted);overflow-wrap:anywhere}
+.profile-card summary{cursor:pointer;color:var(--secondary);padding:4px 0}
+.profile-card details p{margin:7px 0}
+.profile-download{display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid #2e4b58;margin-top:auto;padding-top:13px}
+.profile-download a{font-size:.74rem;font-weight:700;color:var(--signal);text-underline-offset:4px;line-height:1.8}
+.profile-download span{font-size:.65rem;color:var(--muted)}
+.profile-empty{padding:35px 20px;border:1px solid var(--line);color:var(--secondary);text-align:center;font-size:.86rem}
+.profile-selection{display:flex;justify-content:space-between;align-items:center;gap:20px;border:1px solid #496978;background:#10232e;padding:16px 20px;margin-top:18px}
+.profile-selection>div{display:flex;align-items:center;gap:22px}
+.profile-selection strong{font-size:.82rem;white-space:nowrap}
+.profile-selection .button-primary{border:0;cursor:pointer;min-height:46px}
+.download-status{font-size:.75rem;color:var(--secondary);margin:13px 0;min-height:1.5em}
+.profiles-footer-link{font-size:.73rem;color:var(--secondary);text-underline-offset:4px;margin-left:auto}
+@media(max-width:1000px){.profile-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.profiles-intro{gap:30px}.profiles-all{padding:22px}}
+@media(max-width:760px){.profiles-intro{grid-template-columns:1fr;padding-top:36px;gap:25px}.profiles-intro h1{font-size:clamp(4.1rem,12vw,6rem)}.profiles-all{display:grid;grid-template-columns:1fr 1fr;column-gap:18px;align-items:center}.profiles-all .eyebrow{grid-column:1/-1}.profiles-all>strong{font-size:3.1rem;margin:14px 0 0}.profiles-all p{grid-column:1/-1}.profiles-heading{align-items:start;flex-direction:column;gap:15px}.profiles-filters{grid-template-columns:1fr}.profile-selection{gap:12px;padding:14px}.profile-selection>div{align-items:start;flex-direction:column;gap:7px}.profile-selection .button-primary{font-size:.75rem;padding:11px 15px}.profiles-page .footer-inner{flex-wrap:wrap}.profiles-footer-link{margin-left:0}}
+@media(max-width:600px){.profile-grid{grid-template-columns:1fr;max-height:650px}.profile-card{padding:18px}.profiles-all{grid-template-columns:1fr}.profiles-all>strong{margin:14px 0 20px}.profiles-all p{grid-column:auto}.profiles-intro h1{font-size:4.2rem}.profile-selection{gap:9px}.profiles-footer-link{font-size:.7rem}}

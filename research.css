@@ -1,6 +1,7 @@
-.site-nav{display:flex;align-items:center;gap:24px;margin-left:auto;font-size:.8rem;font-weight:700}
+.site-nav{display:flex;align-items:center;flex-wrap:wrap;justify-content:flex-end;gap:0 24px;margin-left:auto;font-size:.8rem;font-weight:700}
 .site-nav a{padding:12px 0;text-decoration:none;border-bottom:2px solid transparent}
 .site-nav a:hover,.site-nav a[aria-current="page"]{color:var(--signal);border-color:var(--signal)}
+@media(max-width:760px){.header-inner{flex-wrap:wrap;gap:8px;padding-top:18px;padding-bottom:12px}.site-nav{width:100%;justify-content:space-between;margin-left:0}}
 .research-page .site-header{position:relative;border-top:3px solid #ee313b;border-bottom:1px solid #263c47;background:#071016}
 .research-main{padding-bottom:88px}
 .research-intro{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,.65fr);gap:7vw;padding:72px 0 66px;align-items:center}
